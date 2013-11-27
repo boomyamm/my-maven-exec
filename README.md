@@ -1,0 +1,4 @@
+my-maven-exec
+=============
+
+exec
