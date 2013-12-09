@@ -33,4 +33,9 @@ public class TestJSONController {
         System.out.println("===========TestJSONController ==> /INDEX ===============");
         return "index";  //跳转
     }
+    @RequestMapping(value="/INDEX2",method=RequestMethod.GET)
+    public String getIndex2(){
+        System.out.println("===========TestJSONController ==> /INDEX2 ===============");
+        return "index2";  //跳转
+    }
 }
