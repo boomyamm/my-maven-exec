@@ -16,13 +16,17 @@
         .container { border-width: 1px; border-color: blue; border-style: solid; padding: 0px 0px 0px 0px; text-align: center; vertical-align: middle;}
         #circle {
             border-radius:150px 150px 150px 150px;
-            box-shadow:0px 0px 2px #000;
+            box-shadow:0px 0px 0px #000;
             background:transparent;
             width: 300px;
             height: 300px;
-            border:#F00 3px solid;
+            border:#06c 3px solid;
             vertical-align:middle;
             display:inline-block;
+        }
+        body {
+            /*background-image: url(http://cl.ly/EXdC/darkdenim.png);*/
+            /*background-color: black;*/
         }
     </style>
 </head>
