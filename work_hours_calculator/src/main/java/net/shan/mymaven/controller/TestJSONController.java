@@ -27,4 +27,10 @@ public class TestJSONController {
         System.out.println("===========TestJSONController ==> /JUMP ===============");
         return "redirect:/JSON";  //跳转
     }
+
+    @RequestMapping(value="/INDEX",method=RequestMethod.GET)
+    public String getIndex(){
+        System.out.println("===========TestJSONController ==> /INDEX ===============");
+        return "index";  //跳转
+    }
 }

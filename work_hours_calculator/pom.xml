@@ -132,7 +132,20 @@
                   <server>tomcat7</server>
                   <username>admin</username>
                   <password>admin</password>
+                  <port>8083</port>
               </configuration>
+              <!--<executions>
+                  <execution>
+                      <id>tomcat-run</id>
+                      <goals>
+                          <goal>run</goal>
+                      </goals>
+                      <phase>pre-integration-test</phase>
+                      <configuration>
+                          <port>8082</port>
+                      </configuration>
+                  </execution>
+              </executions>-->
           </plugin>
       </plugins>
     <!--<pluginManagement>
