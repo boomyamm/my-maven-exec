@@ -115,7 +115,12 @@
 <div id="wrapper">
     <div id="scroller">
         <ul>
-            <li>Pretty cell 1</li>
+            <li>
+
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+            </li>
             <li>Pretty cell 2</li>
             <li>Pretty cell 3</li>
             <li>Pretty cell 4</li>
