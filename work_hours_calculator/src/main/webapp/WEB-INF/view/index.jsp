@@ -21,8 +21,9 @@
             background:transparent;
             width: 300px;
             height: 300px;
-            border:#06c 3px solid;
+            border:rosybrown 6px solid;
             vertical-align:middle;
+            text-align: center;
             display:inline-block;
         }
 
@@ -96,17 +97,13 @@
             overflow: hidden;
             text-align: center;
         }
-        .cell {
-            width: 120px;
-            height: 160px;
-            float: left;
-            line-height: 160px;
-            border-right: 1px solid #ccc;
-            border-bottom: 1px solid #ccc;
-            background-color: #fafafa;
-            font-size: 14px;
-            overflow: hidden;
-            text-align: center;
+        .cell-0 {
+            width:120px;
+            height:20px;
+            z-index: 1;
+            position: absolute;
+            top: -75px;
+            text-align: right;
         }
         .cell-1 {
             width:120px;
@@ -148,6 +145,7 @@
             $("#circle").on("tap",function(){
                 alert("Hello World.");
             });
+            startTime();
         });
 
         var myScroll;
@@ -155,6 +153,24 @@
             myScroll = new IScroll('#wrapper', { eventPassthrough: true, scrollX: true, scrollY: false, preventDefault: false });
         }
         document.addEventListener('DOMContentLoaded', loaded, false);
+
+        var date = new Date();
+        var milliseconds = date.getTime();
+        function startTime(){
+            date = new Date(milliseconds);
+            var h=date.getHours();
+            var m=checkTime(date.getMinutes());
+            var s=checkTime(date.getSeconds());
+            $("#lblTime").html(h+":"+m+":"+s);
+            milliseconds = milliseconds + 1000;
+//            $("#lblTime").innerHTML = h+":"+m+":"+s;
+            t=setTimeout('startTime()',1000)
+        }
+        function checkTime(i) {
+            if (i<10)
+            {i="0" + i}
+            return i
+        }
     </script>
     <script>
 
@@ -164,7 +180,11 @@
 </head>
 <body onload="loaded()">
     <div class="container">
-        <div id="header">2013.12</div>
+        <div id="header">2013.12
+            <div style="float:right;border-width: 3px; border-left-style: outset; border-color:gray; height:45px; width:45px;">
+                <span class="glyphicon glyphicon-cog pull-right" style="top:10px;height:45px; width:45px;"></span>
+            </div>
+        </div>
         <%--<div style="text-align: center;"><h4>2013.12</h4></div>--%>
         <%--<div class="row">
             <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4">
@@ -232,6 +252,7 @@
                 </div>--%>
                 <ul>
                     <li>
+                        <div class="cell-0"><span class="glyphicon glyphicon-pencil"></span></div>
                         <div class="cell-1">星期一</div>
                         <div class="cell-2">上班: 10:00</div>
                         <div class="cell-3">下班: 20:00</div>
@@ -290,7 +311,10 @@
         <h4><label>本月累计工时:</label> 100:59'</h4>
         <p>&nbsp;
         <div style="vertical-align:middle; text-align:center; border-width: 1px; border-color: blue; border-style: solid;" data-role="page" id="btnSubmit">
-            <div id="circle">&nbsp;</div>
+            <div id="circle">
+                <div id="lblTime" style=" height:30px; font-size: 30px; margin-top: 50px;">10 : 59 : 59</div>
+                <div id="lblStatus" style="font-size: 50px;margin-top: 25px;">上班!</div>
+            </div>
         </div>
 
     </div>
