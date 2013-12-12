@@ -181,9 +181,11 @@
 <body onload="loaded()">
     <div class="container">
         <div id="header">2013.12
-            <div style="float:right;border-width: 3px; border-left-style: outset; border-color:gray; height:45px; width:45px;">
+
+            <div style="float:right; border-left: 1px solid #4285b1; height:45px; width:45px;">
                 <span class="glyphicon glyphicon-cog pull-right" style="top:10px;height:45px; width:45px;"></span>
             </div>
+            <div style="float:right; border-right: 1px solid #005b98;">&nbsp;</div>
         </div>
         <%--<div style="text-align: center;"><h4>2013.12</h4></div>--%>
         <%--<div class="row">
