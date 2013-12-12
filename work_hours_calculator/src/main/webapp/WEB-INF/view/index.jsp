@@ -143,7 +143,7 @@
     <script type="text/javascript">
         $(document).on("pageinit","#btnSubmit",function(){
             $("#circle").on("tap",function(){
-                alert("Hello World.");
+                alert("Hello World1.");
             });
             startTime();
         });
