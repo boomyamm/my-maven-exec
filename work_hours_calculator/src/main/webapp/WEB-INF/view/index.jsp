@@ -7,7 +7,7 @@
     <!-- 最新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/css/bootstrap.min.css">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
@@ -33,7 +33,7 @@
             border: 0;
         }
 
-        #header {
+        .header {
             width: 100%;
             height: 45px;
             line-height: 45px;
@@ -144,6 +144,9 @@
         $(document).on("pageinit","#btnSubmit",function(){
             $("#circle").on("tap",function(){
                 alert("Hello World1.");
+                $("#main").hide(function(){
+                    $("#setup").slideDown();
+                });
             });
             startTime();
         });
@@ -180,147 +183,159 @@
 </head>
 <body onload="loaded()">
     <div class="container">
-        <div id="header">2013.12
-
-            <div style="float:right; border-left: 1px solid #4285b1; height:45px; width:45px;">
-                <span class="glyphicon glyphicon-cog pull-right" style="top:10px;height:45px; width:45px;"></span>
+        <div id="main" style="display: none;">
+            <div class="header">2013.12
+                <div style="float:right; border-left: 1px solid #4285b1; height:45px; width:45px;">
+                    <span class="glyphicon glyphicon-cog pull-right" style="top:10px;height:45px; width:45px;"></span>
+                </div>
+                <div style="float:right; border-right: 1px solid #005b98;">&nbsp;</div>
             </div>
-            <div style="float:right; border-right: 1px solid #005b98;">&nbsp;</div>
-        </div>
-        <%--<div style="text-align: center;"><h4>2013.12</h4></div>--%>
-        <%--<div class="row">
-            <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4">
-                周一
-                <div>上班: 10:00</div>
-                <div>下班: 20:00</div>
-                <div>时长: 10:59'</div>
-            </div>
-            <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4">
-                周二
-                <div>上班: 10:00</div>
-                <div>下班: 20:00</div>
-                <div>时长: 10:59'</div>
-            </div>
-            <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4">
-                周三
-                <div>上班: 10:00</div>
-                <div>下班: 20:00</div>
-                <div>时长: 10:59'</div>
-            </div>
-        </div>--%>
-        <div id="wrapper">
-            <div id="scroller">
-                <%--<div class="cell">
-                    <div class="cell-1">星期一</div>
-                    <div class="cell-2">上班: 10:00</div>
-                    <div class="cell-3">下班: 20:00</div>
-                    <div class="cell-4">时长: 10:59'</div>
+            <%--<div style="text-align: center;"><h4>2013.12</h4></div>--%>
+            <%--<div class="row">
+                <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4">
+                    周一
+                    <div>上班: 10:00</div>
+                    <div>下班: 20:00</div>
+                    <div>时长: 10:59'</div>
                 </div>
-                <div class="cell">
-                    <div class="cell-1">星期二</div>
-                    <div class="cell-2">上班: 10:00</div>
-                    <div class="cell-3">下班: 20:00</div>
-                    <div class="cell-4">时长: 10:59'</div>
+                <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4">
+                    周二
+                    <div>上班: 10:00</div>
+                    <div>下班: 20:00</div>
+                    <div>时长: 10:59'</div>
                 </div>
-                <div class="cell">
-                    <div class="cell-1">星期三</div>
-                    <div class="cell-2">上班: 10:00</div>
-                    <div class="cell-3">下班: 20:00</div>
-                    <div class="cell-4">时长: 10:59'</div>
+                <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4">
+                    周三
+                    <div>上班: 10:00</div>
+                    <div>下班: 20:00</div>
+                    <div>时长: 10:59'</div>
                 </div>
-                <div class="cell">
-                    <div class="cell-1">星期四</div>
-                    <div class="cell-2">上班: 10:00</div>
-                    <div class="cell-3">下班: 20:00</div>
-                    <div class="cell-4">时长: 10:59'</div>
-                </div>
-                <div class="cell">
-                    <div class="cell-1">星期五</div>
-                    <div class="cell-2">上班: 10:00</div>
-                    <div class="cell-3">下班: 20:00</div>
-                    <div class="cell-4">时长: 10:59'</div>
-                </div>
-                <div class="cell">
-                    <div class="cell-1">星期六</div>
-                    <div class="cell-2">上班: 10:00</div>
-                    <div class="cell-3">下班: 20:00</div>
-                    <div class="cell-4">时长: 10:59'</div>
-                </div>
-                <div class="cell">
-                    <div class="cell-1">星期日</div>
-                    <div class="cell-2">上班: 10:00</div>
-                    <div class="cell-3">下班: 20:00</div>
-                    <div class="cell-4">时长: 10:59'</div>
-                </div>--%>
-                <ul>
-                    <li>
-                        <div class="cell-0"><span class="glyphicon glyphicon-pencil"></span></div>
+            </div>--%>
+            <div id="wrapper">
+                <div id="scroller">
+                    <%--<div class="cell">
                         <div class="cell-1">星期一</div>
                         <div class="cell-2">上班: 10:00</div>
                         <div class="cell-3">下班: 20:00</div>
                         <div class="cell-4">时长: 10:59'</div>
-                    </li>
-                    <li>
+                    </div>
+                    <div class="cell">
                         <div class="cell-1">星期二</div>
                         <div class="cell-2">上班: 10:00</div>
                         <div class="cell-3">下班: 20:00</div>
                         <div class="cell-4">时长: 10:59'</div>
-                    </li>
-                    <li>
+                    </div>
+                    <div class="cell">
                         <div class="cell-1">星期三</div>
                         <div class="cell-2">上班: 10:00</div>
                         <div class="cell-3">下班: 20:00</div>
                         <div class="cell-4">时长: 10:59'</div>
-                    </li>
-                    <li>
+                    </div>
+                    <div class="cell">
                         <div class="cell-1">星期四</div>
                         <div class="cell-2">上班: 10:00</div>
                         <div class="cell-3">下班: 20:00</div>
                         <div class="cell-4">时长: 10:59'</div>
-                    </li>
-                    <li>
+                    </div>
+                    <div class="cell">
                         <div class="cell-1">星期五</div>
                         <div class="cell-2">上班: 10:00</div>
                         <div class="cell-3">下班: 20:00</div>
                         <div class="cell-4">时长: 10:59'</div>
-                    </li>
-                    <li>
+                    </div>
+                    <div class="cell">
                         <div class="cell-1">星期六</div>
                         <div class="cell-2">上班: 10:00</div>
                         <div class="cell-3">下班: 20:00</div>
                         <div class="cell-4">时长: 10:59'</div>
-                    </li>
-                    <li>
+                    </div>
+                    <div class="cell">
                         <div class="cell-1">星期日</div>
                         <div class="cell-2">上班: 10:00</div>
                         <div class="cell-3">下班: 20:00</div>
                         <div class="cell-4">时长: 10:59'</div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <h4>Ctrip</h4>
-        <%--<div>
-            <div class="progress">
-                <div class="progress-bar progress-bar-success" style="width: 0%">
-                    <span class="badge pull-right">0</span>
+                    </div>--%>
+                    <ul>
+                        <li>
+                            <div class="cell-0"><span class="glyphicon glyphicon-pencil"></span></div>
+                            <div class="cell-1">星期一</div>
+                            <div class="cell-2">上班: 10:00</div>
+                            <div class="cell-3">下班: 20:00</div>
+                            <div class="cell-4">时长: 10:59'</div>
+                        </li>
+                        <li>
+                            <div class="cell-1">星期二</div>
+                            <div class="cell-2">上班: 10:00</div>
+                            <div class="cell-3">下班: 20:00</div>
+                            <div class="cell-4">时长: 10:59'</div>
+                        </li>
+                        <li>
+                            <div class="cell-1">星期三</div>
+                            <div class="cell-2">上班: 10:00</div>
+                            <div class="cell-3">下班: 20:00</div>
+                            <div class="cell-4">时长: 10:59'</div>
+                        </li>
+                        <li>
+                            <div class="cell-1">星期四</div>
+                            <div class="cell-2">上班: 10:00</div>
+                            <div class="cell-3">下班: 20:00</div>
+                            <div class="cell-4">时长: 10:59'</div>
+                        </li>
+                        <li>
+                            <div class="cell-1">星期五</div>
+                            <div class="cell-2">上班: 10:00</div>
+                            <div class="cell-3">下班: 20:00</div>
+                            <div class="cell-4">时长: 10:59'</div>
+                        </li>
+                        <li>
+                            <div class="cell-1">星期六</div>
+                            <div class="cell-2">上班: 10:00</div>
+                            <div class="cell-3">下班: 20:00</div>
+                            <div class="cell-4">时长: 10:59'</div>
+                        </li>
+                        <li>
+                            <div class="cell-1">星期日</div>
+                            <div class="cell-2">上班: 10:00</div>
+                            <div class="cell-3">下班: 20:00</div>
+                            <div class="cell-4">时长: 10:59'</div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="progress-bar progress-bar-warning" style="width: 100%">
-                    <span class="badge pull-right">198</span>
+            </div>
+            <h4>Ctrip</h4>
+            <%--<div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" style="width: 0%">
+                        <span class="badge pull-right">0</span>
+                    </div>
+                    <div class="progress-bar progress-bar-warning" style="width: 100%">
+                        <span class="badge pull-right">198</span>
+                    </div>
+                </div>
+            </div>--%>
+            <h4><label>本月累计工时:</label> 100:59'</h4>
+            <p>&nbsp;
+            <div style="vertical-align:middle; text-align:center; border-width: 1px; border-color: blue; border-style: solid;" data-role="page" id="btnSubmit">
+                <div id="circle">
+                    <div id="lblTime" style=" height:30px; font-size: 30px; margin-top: 50px;">10 : 59 : 59</div>
+                    <div id="lblStatus" style="font-size: 50px;margin-top: 25px;">上班!</div>
                 </div>
             </div>
-        </div>--%>
-        <h4><label>本月累计工时:</label> 100:59'</h4>
-        <p>&nbsp;
-        <div style="vertical-align:middle; text-align:center; border-width: 1px; border-color: blue; border-style: solid;" data-role="page" id="btnSubmit">
-            <div id="circle">
-                <div id="lblTime" style=" height:30px; font-size: 30px; margin-top: 50px;">10 : 59 : 59</div>
-                <div id="lblStatus" style="font-size: 50px;margin-top: 25px;">上班!</div>
-            </div>
-        </div>
 
+        </div>
+        <div id="setup" >
+            <div class="header">设置
+                <div style="float:right; margin-left: 4px; margin-right: 2px;">
+                    <button type="button" class="btn btn-success btn-sm">确定</button>
+                </div>
+                <div style="float:right; border-right: 1px solid #005b98;">&nbsp;</div>
+                <div style="float:left; margin-right: 4px; margin-left: 2px;">
+                    <button type="button" class="btn btn-warning btn-sm">取消</button>
+                </div>
+                <div style="float:left; border-left: 1px solid #005b98;">&nbsp;</div>
+            </div>
+        </div>
     </div>
-
 
 </body>
 </html>
