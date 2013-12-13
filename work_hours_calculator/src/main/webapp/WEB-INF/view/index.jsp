@@ -142,14 +142,46 @@
     <script type="text/javascript" src="resources/iscroll.js"></script>
     <script type="text/javascript">
         $(document).on("pageinit","#btnSubmit",function(){
-            $("#circle").on("tap",function(){
-                alert("Hello World1.");
+            $("#btnSetup").on("tap",function(){
                 $("#main").hide(function(){
                     $("#setup").slideDown();
                 });
             });
+            $("#btnOk").on("tap",function(){
+                $("#setup").hide(function(){
+                    $("#main").slideDown();
+                });
+            });
+            $("#btnCancel").on("tap",function(){
+                $("#setup").hide(function(){
+                    $("#main").slideDown();
+                });
+            });
             startTime();
+
+            initSelectHour();
+            initSelectMinute();
+
         });
+
+        function initSelectHour(){
+            var str;
+            for(var i=0; i<=23; i++){
+                str = "<option> " + i + " 时 </option>"
+                $("#selClosing").append(str);
+                $("#selNotWorkDuringHour").append(str);
+                $("#selNotWorkDuringHour2").append(str);
+                $("#selNotWorkDuringHour3").append(str);
+            }
+        }
+        function initSelectMinute(){
+            for(var i=0; i<=50; i=i+10){
+                str = "<option> " + i + " 分 </option>"
+                $("#selNotWorkDuringMinute").append(str);
+                $("#selNotWorkDuringMinute2").append(str);
+                $("#selNotWorkDuringMinute3").append(str);
+            }
+        }
 
         var myScroll;
         function loaded () {
@@ -183,10 +215,10 @@
 </head>
 <body onload="loaded()">
     <div class="container">
-        <div id="main" style="display: none;">
+        <div id="main">
             <div class="header">2013.12
                 <div style="float:right; border-left: 1px solid #4285b1; height:45px; width:45px;">
-                    <span class="glyphicon glyphicon-cog pull-right" style="top:10px;height:45px; width:45px;"></span>
+                    <span id="btnSetup" class="glyphicon glyphicon-cog pull-right" style="top:10px;height:45px; width:45px;"></span>
                 </div>
                 <div style="float:right; border-right: 1px solid #005b98;">&nbsp;</div>
             </div>
@@ -323,16 +355,81 @@
             </div>
 
         </div>
-        <div id="setup" >
+        <div id="setup" style="display: none;">
             <div class="header">设置
                 <div style="float:right; margin-left: 4px; margin-right: 2px;">
-                    <button type="button" class="btn btn-success btn-sm">确定</button>
+                    <button id="btnOk" type="button" class="btn btn-success btn-sm">确定</button>
                 </div>
                 <div style="float:right; border-right: 1px solid #005b98;">&nbsp;</div>
                 <div style="float:left; margin-right: 4px; margin-left: 2px;">
-                    <button type="button" class="btn btn-warning btn-sm">取消</button>
+                    <button id="btnCancel" type="button" class="btn btn-warning btn-sm">取消</button>
                 </div>
                 <div style="float:left; border-left: 1px solid #005b98;">&nbsp;</div>
+            </div>
+            <p>
+            <div>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="selClosing" class="col-sm-2 control-label pull-left" style="margin-left:5px;">每日结算时间</label>
+                    <select id="selClosing" class="form-control input-sm pull-right" style="width:40%; margin-right: 20px;">
+                    </select>
+                </div>
+                <p>
+                <div class="form-group">
+                    <label for="selNotWorkDuringHour" class="col-sm-2 control-label pull-left" style="margin-left:5px;">每日非工作时间段</label>
+                </div>
+                <div class="form-group">
+                    <select id="selNotWorkDuringHour" class="form-control input-sm pull-left" style="width:40%;margin-left:20px;">
+                    </select>
+                    到
+                    <select id="selNotWorkDuringMinute" class="form-control input-sm pull-right" style="width:40%; margin-right: 20px;">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="selNotWorkDuringHour2" class="form-control input-sm pull-left" style="width:40%;margin-left:20px;">
+                    </select>
+                    到
+                    <select id="selNotWorkDuringMinute2" class="form-control input-sm pull-right" style="width:40%; margin-right: 20px;">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="selNotWorkDuringHour3" class="form-control input-sm pull-left" style="width:40%;margin-left:20px;">
+                    </select>
+                    到
+                    <select id="selNotWorkDuringMinute3" class="form-control input-sm pull-right" style="width:40%; margin-right: 20px;">
+                    </select>
+                </div>
+
+                <%--<label for="selClosing" class="col-sm-2 control-label pull-left">每日结算时间</label>
+                <select id="selClosing" class="form-control input-sm pull-right" style="width:70%">
+                    <option>0点</option>
+                    <option>1点</option>
+                    <option>2点</option>
+                    <option>3点</option>
+                    <option>4点</option>
+                    <option>5点</option>
+                    <option>6点</option>
+                    <option>7点</option>
+                    <option>8点</option>
+                    <option>9点</option>
+                    <option>10点</option>
+                    <option>11点</option>
+                    <option>12点</option>
+                    <option>13点</option>
+                    <option>14点</option>
+                    <option>15点</option>
+                    <option>16点</option>
+                    <option>17点</option>
+                    <option>18点</option>
+                    <option>19点</option>
+                    <option>20点</option>
+                    <option>21点</option>
+                    <option>22点</option>
+                    <option>23点</option>
+                </select>--%>
+                </form>
+            </div>
+
             </div>
         </div>
     </div>
