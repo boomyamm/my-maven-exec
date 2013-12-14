@@ -141,6 +141,8 @@
 
     <script type="text/javascript" src="resources/iscroll.js"></script>
     <script type="text/javascript">
+        var status = 0; //0:working(下班打卡), 1:closed(上班打卡)
+        var closingTime = 0; //结算时间点
         $(document).on("pageinit","#btnSubmit",function(){
             $("#btnSetup").on("tap",function(){
                 $("#main").hide(function(){
@@ -157,6 +159,19 @@
                     $("#main").slideDown();
                 });
             });
+            //获取现在的状态, default:1
+            status = 1;
+            closingTime = 0;
+            $("#circle").on("tap", function(){
+                changeStatus();
+            });
+
+            function changeStatus(){
+                if(status == 1){
+                    status = 0;
+                    $("#lblStatus").text("下班!");
+                }
+            }
             startTime();
 
             initSelectHour();
@@ -167,7 +182,7 @@
         function initSelectHour(){
             var str;
             for(var i=0; i<=23; i++){
-                str = "<option> " + i + " 时 </option>"
+                str = "<option> " + i + " 时 </option>";
                 $("#selClosing").append(str);
                 $("#selNotWorkDuringHour").append(str);
                 $("#selNotWorkDuringHour2").append(str);
@@ -175,8 +190,9 @@
             }
         }
         function initSelectMinute(){
+            var str;
             for(var i=0; i<=50; i=i+10){
-                str = "<option> " + i + " 分 </option>"
+                str = "<option> " + i + " 分 </option>";
                 $("#selNotWorkDuringMinute").append(str);
                 $("#selNotWorkDuringMinute2").append(str);
                 $("#selNotWorkDuringMinute3").append(str);
@@ -198,6 +214,10 @@
             var s=checkTime(date.getSeconds());
             $("#lblTime").html(h+":"+m+":"+s);
             milliseconds = milliseconds + 1000;
+            if(h==closingTime && status==0){
+                status = 1;
+                $("#lblStatus").text("上班!");
+            }
 //            $("#lblTime").innerHTML = h+":"+m+":"+s;
             t=setTimeout('startTime()',1000)
         }
@@ -245,48 +265,6 @@
             </div>--%>
             <div id="wrapper">
                 <div id="scroller">
-                    <%--<div class="cell">
-                        <div class="cell-1">星期一</div>
-                        <div class="cell-2">上班: 10:00</div>
-                        <div class="cell-3">下班: 20:00</div>
-                        <div class="cell-4">时长: 10:59'</div>
-                    </div>
-                    <div class="cell">
-                        <div class="cell-1">星期二</div>
-                        <div class="cell-2">上班: 10:00</div>
-                        <div class="cell-3">下班: 20:00</div>
-                        <div class="cell-4">时长: 10:59'</div>
-                    </div>
-                    <div class="cell">
-                        <div class="cell-1">星期三</div>
-                        <div class="cell-2">上班: 10:00</div>
-                        <div class="cell-3">下班: 20:00</div>
-                        <div class="cell-4">时长: 10:59'</div>
-                    </div>
-                    <div class="cell">
-                        <div class="cell-1">星期四</div>
-                        <div class="cell-2">上班: 10:00</div>
-                        <div class="cell-3">下班: 20:00</div>
-                        <div class="cell-4">时长: 10:59'</div>
-                    </div>
-                    <div class="cell">
-                        <div class="cell-1">星期五</div>
-                        <div class="cell-2">上班: 10:00</div>
-                        <div class="cell-3">下班: 20:00</div>
-                        <div class="cell-4">时长: 10:59'</div>
-                    </div>
-                    <div class="cell">
-                        <div class="cell-1">星期六</div>
-                        <div class="cell-2">上班: 10:00</div>
-                        <div class="cell-3">下班: 20:00</div>
-                        <div class="cell-4">时长: 10:59'</div>
-                    </div>
-                    <div class="cell">
-                        <div class="cell-1">星期日</div>
-                        <div class="cell-2">上班: 10:00</div>
-                        <div class="cell-3">下班: 20:00</div>
-                        <div class="cell-4">时长: 10:59'</div>
-                    </div>--%>
                     <ul>
                         <li>
                             <div class="cell-0"><span class="glyphicon glyphicon-pencil"></span></div>
@@ -368,7 +346,7 @@
             </div>
             <p>
             <div>
-            <form class="form-horizontal" role="form">
+                <form class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="selClosing" class="col-sm-2 control-label pull-left" style="margin-left:5px;">每日结算时间</label>
                     <select id="selClosing" class="form-control input-sm pull-right" style="width:40%; margin-right: 20px;">
@@ -399,34 +377,6 @@
                     <select id="selNotWorkDuringMinute3" class="form-control input-sm pull-right" style="width:40%; margin-right: 20px;">
                     </select>
                 </div>
-
-                <%--<label for="selClosing" class="col-sm-2 control-label pull-left">每日结算时间</label>
-                <select id="selClosing" class="form-control input-sm pull-right" style="width:70%">
-                    <option>0点</option>
-                    <option>1点</option>
-                    <option>2点</option>
-                    <option>3点</option>
-                    <option>4点</option>
-                    <option>5点</option>
-                    <option>6点</option>
-                    <option>7点</option>
-                    <option>8点</option>
-                    <option>9点</option>
-                    <option>10点</option>
-                    <option>11点</option>
-                    <option>12点</option>
-                    <option>13点</option>
-                    <option>14点</option>
-                    <option>15点</option>
-                    <option>16点</option>
-                    <option>17点</option>
-                    <option>18点</option>
-                    <option>19点</option>
-                    <option>20点</option>
-                    <option>21点</option>
-                    <option>22点</option>
-                    <option>23点</option>
-                </select>--%>
                 </form>
             </div>
 
