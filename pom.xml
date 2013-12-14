@@ -10,5 +10,6 @@
   <modules>
       <module>my_maven_2</module>
       <module>my_maven_netty</module>
+      <module>zookeeper_exercise</module>
   </modules>
 </project>
