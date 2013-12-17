@@ -12,6 +12,41 @@
       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <bean class="net.shan.mymaven.service.InitContext" init-method="init" scope="singleton" />
+    <!-- 导入属性配置文件 -->
+    <context:property-placeholder location="classpath:server.properties" />
 
-</beans> 
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+
+    <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+        <!--<property name="dataSource" ref="dataSource" />-->
+    <!--</bean>-->
+
+
+    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- SqlMap setup for MyBatis Database Layer -->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlMapClient">
+        <property value="classpath:mybatis-config.xml" name="configLocation"/>
+        <!-- <property name="mapperLocations" value="classpath*:com/the9/xx/dao/ibatis/maps/**/*.xml"/>-->
+        <!-- <property name="typeAliasesPackage" value="com.the9.xx.domain" /> -->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
+        <constructor-arg ref="sqlMapClient" index="0"/>
+        <constructor-arg value="BATCH" index="1"/>
+    </bean>
+    <bean class="net.shan.mymaven.dao.impl.AccountDaoImpl" id="accountDao">
+        <property name="sqlSessionTemplate" ref="sqlSession"/>
+    </bean>
+
+
+    <bean class="net.shan.mymaven.manager.Context" init-method="init" scope="singleton">
+        <property name="accountDao" ref="accountDao" />
+    </bean>
+</beans>
